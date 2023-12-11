@@ -1,0 +1,32 @@
+{
+    "transition": "slide",
+    "controls": true,
+    "progress": true,
+    "slideNumber": true,
+    "center": true,
+    "keyboard": {
+        "81": "toggleOverview"
+    },
+    "chalkboard": {
+        "boardmarkerWidth": 10,
+        "chalkWidth": 10,
+        "readOnly": false,
+        "src": "test.json",
+        "toggleChalkboardButton": {
+            "left": "30px",
+            "bottom": "30px",
+            "top": "auto",
+            "right": "auto"
+        },
+        "toggleNotesButton": {
+            "left": "30px",
+            "bottom": "30px",
+            "top": "auto",
+            "right": "auto"
+        },
+        "eraser": {
+            "radius": 50,
+            "src": "plugins/chalkboard/img/sponge.png"
+        }
+    }
+}

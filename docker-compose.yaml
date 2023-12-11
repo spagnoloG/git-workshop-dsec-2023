@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  reveal-md:
+    image: webpronl/reveal-md:latest
+    container_name: reveal-md
+    volumes:
+      - ./slides/:/slides
+    ports:
+      - "1948:1948"
+    command: /slides --theme blood --watch -d
