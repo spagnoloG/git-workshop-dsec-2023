@@ -746,9 +746,162 @@ Date:   Wed Dec 13 00:08:53 2023 +0100
 In sedaj HEAD kaze na commit, ki smo ga izbrali.
 
 ---
+### Git diff
+
+Pokaže razliko med trenutnim stanjem in stanjem v izbranem commitu, v primeru
+da commmit ni specificiran, avtomatsko vzame HEAD.
+
+Recimo da nekaj dodamo v datoteko `example.txt`:
+
+```bash
+git diff
+
+diff --git a/example.txt b/example.txt
+index 8430408..894d3bf 100644
+--- a/example.txt
++++ b/example.txt
+@@ -1 +1,4 @@
+ Initial content
++
++
++Nekaj sem dodal v example.txt
+```
+
+---
+### Git diff
+
+Tukaj pa je primer uporabe `git diff` med dvema razlicnima uveljavitvama.
+Uporabno ce zelimo na hitro videti spremembe in razlike med dvema commitoma.
+
+```
+git diff e60b7db57 8a79fbcae
+
+diff --git a/prva_datoteka.txt b/prva_datoteka.txt
+index 7305551..9349f3f 100644
+--- a/prva_datoteka.txt
++++ b/prva_datoteka.txt
+@@ -1,3 +1,3 @@
+ #TO JE PRVA DATOTEKA
+
+- 1337 feature\n 1338 feature\n 1339 feature
+\ No newline at end of file
++ 1337 feature\n 1338 feature
+\ No newline at end of file
+```
+
+
+---
 ### Git blame 
 
 <img src="./img/git-blame-meme.jpg" alt="logo" title="Logo" width="1000"/>
+
+
+---
+### Git blame
+
+Recimo da nas zanima, kdo vse in kdaj je spreminjal datoteko `prva_datoteka.txt`:
+
+```bash
+git blame -l prva_datoteka.txt
+```
+
+```
+^e44d7 (Gašper Spagnolo 2023-12-12 22:02:03 +0100 1) #TO JE PRVA DATOTEKA
+634d79 (Gašper Spagnolo 2023-12-12 23:06:49 +0100 2)
+b4fac5 (Gašper Spagnolo 2023-12-12 23:35:06 +0100 3)  1337 feature\n 1338 feature\n 1339 feature\n 1331 feature\n ojla\n ojla
+```
+
+
+---
+### Git blame napredno
+
+Recimo da nas zanima samo od specificnega commmita naprej:
+
+```bash
+git -l blame <commit-hash>..HEAD prva_datoteka.txt
+```
+
+Recimo da nas zanimajo spremembe samo specificnega avtorja:
+```bash
+git blame -l --author="Author Name" prva_datoteka.txt
+```
+
+Obcijano se zelimo znebiti tudi praznih vrstic:
+```bash
+git blame -l -w prva_datoteka.txt
+```
+
+---
+### Cherry pick
+
+Cherry pick in a nutshell:
+
+<img src="./img/cherry-pick.png" alt="logo" title="Logo" width="1000"/>
+
+---
+### Cherry pick primer
+
+```bash
+git checkout main
+git checkout -b cpp
+```
+
+```bash
+echo "This is the first change." > file.txt
+git add file.txt
+git commit -m "First change in cpp branch"
+```
+
+```bash
+echo "This is the second change." >> file.txt
+git add file.txt
+git commit -m "Second change in cpp branch"
+```
+
+---
+### Cherry pick primer
+
+Izberemo commit, ki ga zelimo cherry pickati:
+
+```bash
+git log
+```
+
+```bash
+commit 88b2b262d71fbf82b5ceccd5cbd71a1f7fc0e605 (HEAD -> cpp)
+Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+Date:   Wed Dec 13 00:52:32 2023 +0100
+
+    Second change in cpp branch
+
+commit b18a08c1602c623df9aed2bd245a3928e01a3edb
+Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+Date:   Wed Dec 13 00:52:22 2023 +0100
+
+    First change in cpp branch
+```
+
+Recimo da zelimo prvo spremembo: `b18a..`.
+
+---
+### Cherry pick primer
+
+
+```bash
+git checkout main
+```
+
+```bash
+ git cherry-pick b18a08c1602c623df9aed2bd245a3928e01a3edb
+[main 4e030e9] First change in cpp branch
+ Date: Wed Dec 13 00:52:22 2023 +0100
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file.txt
+```
+
+```bash
+git merge cpp
+```
 
 
 ---
