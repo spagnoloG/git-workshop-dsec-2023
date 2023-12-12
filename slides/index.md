@@ -384,6 +384,232 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 <img src="./img/meme-gitignore-node-modules.png" alt="logo" title="Logo" width="600"/> 
 
+
+---
+### Branching
+
+Zakaj?
+
+<img src="./img/git-branches-merge.png" alt="logo" title="Logo" width="600"/>
+
+---
+### Reality
+
+<img src="./img/branching-reallife.png" alt="logo" title="Logo" width="400"/>
+
+
+---
+### Ustvarjanje nove veje
+
+```bash
+λ git checkout -b feats1337
+Switched to a new branch 'feats1337'
+# -b pomeni, da ustvarimo novo vejo
+```
+
+Spremenino datoteko `prva_datoteka.txt`:
+
+```bash
+echo -n "\n 1337 feature" >> prva_datoteka.txt
+```
+Dodamo spremembe v repozitorij:
+
+```bash
+git add prva_datoteka.txt
+```
+
+---
+### Ustvarjanje nove veje
+
+Uveljavimo spremembe:
+
+```bash
+λ git commit -m "Dodaj vrstico v prvo datoteko"
+```
+
+```bash
+λ git push -u origin feats1337
+
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a new pull request for 'feats1337':
+remote:   https://gitea.spanskiduh.dev/spanskiduh/test-repo/compare/main...feats1337
+remote:
+remote: . Processing 1 references
+remote: Processed 1 references in total
+To https://gitea.spanskiduh.dev/spanskiduh/test-repo.git
+ * [new branch]      feats1337 -> feats1337
+branch 'feats1337' set up to track 'origin/feats1337'.
+```
+
+
+---
+### Pregled vej
+
+Lokalno:
+```bash
+λ git branch 
+
+* feats1337
+  main
+  master
+```
+
+Remote: 
+```
+λ git branch  -r 
+
+  origin/feats1337
+  origin/main
+```
+
+---
+### Pregled vej
+
+```bash
+λ git log --graph --oneline --all
+
+* commit 634d79a74c2f7347c0afb8fb8305b523ee16d05a (HEAD -> feats1337, origin/feats1337)
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:06:49 2023 +0100
+|
+|     Dodaj vrstico v prvo datoteko
+|
+* commit e44d7ef17a34fa9fa2d92ace8dd1296c06353d90 (origin/main, master, main)
+  Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+  Date:   Tue Dec 12 22:02:03 2023 +0100
+
+      Zelo deskriptivno sporocilo!
+```
+
+
+---
+### Globje
+
+
+```bash
+* commit b62623b5451187faf463bf5f0e0a93ea0c1fbf45 (HEAD -> feats1337, origin/feats1337)
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:11:14 2023 +0100
+|
+|     Se ena vrstica
+|
+* commit e60b7db578566b1f4110e04d95580118a6a3160d
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:10:56 2023 +0100
+|
+|     Dodaj novo vrstico v datoteko
+|
+* commit 8a79fbcaefdd8f445f6ff1d4a5e693963f4772dc
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:10:23 2023 +0100
+|
+|     Uredi prvo datoteko se nekoliko
+|
+* commit 634d79a74c2f7347c0afb8fb8305b523ee16d05a
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:06:49 2023 +0100
+|
+|     Dodaj vrstico v prvo datoteko
+|
+* commit e44d7ef17a34fa9fa2d92ace8dd1296c06353d90 (origin/main, master, main)
+  Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+  Date:   Tue Dec 12 22:02:03 2023 +0100
+
+      Zelo deskriptivno sporocilo!
+```
+
+
+---
+### Treunutno stanje
+
+```
+main: e44d7 --
+            |
+feats1337:  634d79 --  8a79f -- e60b7 -- b62623
+```
+
+---
+### Združevanje vej
+
+<img src="./img/merge-rebase.png" alt="logo" title="Logo" width="600"/> 
+
+---
+### Združevanje vej
+
+Merge:
+```
+main: e44d7 -- M
+                  |
+feats1337:       634d79 --  8a79f -- e60b7 -- b62623
+```
+
+Rebase:
+```
+e44d7 -- [634d79 --  8a79f' -- e60b7' -- b62623']
+```
+
+---
+### Rebase
+
+```
+git checkout feats1337
+git rebase main
+git checkout main
+git merge feats1337
+```
+
+---
+### Rebase
+
+```bash
+* commit b62623b5451187faf463bf5f0e0a93ea0c1fbf45 (HEAD -> main, origin/feats1337, feats1337)
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:11:14 2023 +0100
+|
+|     Se ena vrstica
+|
+* commit e60b7db578566b1f4110e04d95580118a6a3160d
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:10:56 2023 +0100
+|
+|     Dodaj novo vrstico v datoteko
+|
+* commit 8a79fbcaefdd8f445f6ff1d4a5e693963f4772dc
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:10:23 2023 +0100
+|
+|     Uredi prvo datoteko se nekoliko
+|
+* commit 634d79a74c2f7347c0afb8fb8305b523ee16d05a
+| Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+| Date:   Tue Dec 12 23:06:49 2023 +0100
+|
+|     Dodaj vrstico v prvo datoteko
+|
+* commit e44d7ef17a34fa9fa2d92ace8dd1296c06353d90 (origin/main, master)
+  Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+  Date:   Tue Dec 12 22:02:03 2023 +0100
+
+      Zelo deskriptivno sporocilo!
+```
+
+---
+### Merge
+
+```
+git checkout -b feats222
+# Create some commits on feats222
+git checkout main
+git merge feats222
+```
+
+---
+### Git blame 
+
+<img src="./img/git-blame-meme.jpg" alt="logo" title="Logo" width="1000"/>
+
+
 ---
 ### Hvala za pozornost <!-- .element: style="text-align: left; font-size: 50px;" -->
 <style>
