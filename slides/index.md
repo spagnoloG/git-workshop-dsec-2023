@@ -605,6 +605,147 @@ git merge feats222
 ```
 
 ---
+### Merge conflicts
+
+<img src="./img/merge-conflict.png" alt="logo" title="Logo" width="600"/>
+
+---
+### Merge conflicts
+
+<img src="./img/mc.webp" alt="logo" title="Logo" width="500"/>
+
+
+---
+### Primer merge conflicta
+
+Najprej ustvarimo `example.txt` datoteko z neko vsebino:
+
+```bash 
+git checkout main
+echo "Initial content" > example.txt
+git add example.txt
+git commit -m "Add example.txt with initial content"
+```
+
+---
+### Primer merge conflicta
+
+Ustvarimo novo vejo uin dodamo novo vrstico v datoteko:
+
+```bash
+git checkout -b feature-branch
+echo "Content added in feature-branch" > example.txt
+git add example.txt
+git commit -m "Modify example.txt in feature-branch"
+```
+
+---
+### Primer merge conflicta 
+
+Se vrnemo nazaj na `main` in dodamo novo vrstico v datoteko:
+
+```bash
+git checkout main
+echo "Conflicting content in main branch" > example.txt
+git add example.txt
+git commit -m "Modify example.txt in main with conflicting content"
+```
+
+---
+### Primer merge conflicta 
+
+Združimo obe veji:
+
+```bash
+git merge feature-branch
+```
+O ne!
+
+```
+λ git merge feature-branch
+Auto-merging example.txt
+CONFLICT (content): Merge conflict in example.txt
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+---
+### Primer merge conflicta
+
+V tem primeru uredimo datoteko tako da obdrzimo
+uveljavitev, ki jo zelimo obdrzati.
+
+```bash
+λ cat example.txt
+<<<<<<< HEAD
+Conflicting content in main branch
+=======
+Content added in feature-branch
+>>>>>>> feature-branch
+```
+
+---
+### Primer merge conflicta
+
+Po popravku datoteke jo dodamo v repozitorij:
+
+```
+git add example.txt
+```
+
+Ter uveljavimo spremembe:
+
+```
+git commit -m "Fix merge conflict"
+```
+
+---
+### Git Reset 
+
+Recimo da se zelimo vrniti na stanje pred zdruzevanjem vej.
+Uporabimo naso prelepo komando `git log` ter lociramo commit,
+na katerega se zelimo vrniti.
+
+```bash
+commit a1af9a2ce1e46f336e2a904149ded1078eedd43e
+Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+Date:   Wed Dec 13 00:09:41 2023 +0100
+
+    Modify example.txt in main with conflicting content
+
+commit 2f12b6c100b20a7e1fc0ce64a902a3109e6edaee (feature-branch)
+Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+Date:   Wed Dec 13 00:09:24 2023 +0100
+
+    Modify example.txt in feature-branch
+
+commit 9fdd5980c45b35dcbe7d0b84d9a82fa3e3babeb6
+Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+Date:   Wed Dec 13 00:08:53 2023 +0100
+
+    Add example.txt with initial content
+
+```
+
+---
+### Git Reset 
+
+Po izboru se lahko vrnemo nazaj na stanje pred zdruzevanjem vej.
+
+```bash
+git reset --hard 9fdd5980c45b35dcbe7d0b84d9a82fa3e3babeb6
+```
+
+```
+commit 9fdd5980c45b35dcbe7d0b84d9a82fa3e3babeb6 (HEAD -> main)
+Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+Date:   Wed Dec 13 00:08:53 2023 +0100
+
+    Add example.txt with initial content
+```
+
+In sedaj HEAD kaze na commit, ki smo ga izbrali.
+
+---
 ### Git blame 
 
 <img src="./img/git-blame-meme.jpg" alt="logo" title="Logo" width="1000"/>
