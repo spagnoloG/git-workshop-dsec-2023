@@ -256,7 +256,133 @@ V datoteko `.git/config` se doda vrstica:
         fetch = +refs/heads/*:refs/remotes/origin/*
 ```
 
+---
+### Dodajanje nove datoteke
 
+```bash
+init on master
+λ echo "#TO JE PRVA DATOTEKA" >> prva_datoteka.txt
+
+init on master [?]
+λ ls -lah
+drwxr-xr-x spagnologasper users 4.0 KB ... .
+drwxr-xr-x spagnologasper users 4.0 KB ... ..
+drwxr-xr-x spagnologasper users 4.0 KB ... .git
+.rw-r--r-- spagnologasper users  21 B  ... prva_datoteka.txt
+```
+
+---
+### dodajanje nove datoteke
+
+```
+λ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        prva_datoteka.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+---
+### dodajanje nove datoteke
+
+```bash
+git add prva_datoteka.txt
+```
+
+```bash
+λ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   prva_datoteka.txt
+```
+
+---
+### Uveljavljanje sprememb
+
+<img src="./img/git-commit-message-meme.png" alt="logo" title="Logo" width="400"/>
+
+```bash
+git commit -m "Zelo deskriptivno sporocilo!"
+```
+
+---
+### Sinhronizacija lokalnega repozitorija z oddaljenim
+
+<img src="./img/master-main.jpg" alt="logo" title="Logo" width="400"/> 
+
+```bash
+git checkout -b main; git push -u origin main
+```
+
+---
+### Sinhronizacija lokalnega repozitorija z oddaljenim
+
+<img src="./img/pushed-to-git.png" alt="logo" title="Logo" width="600"/> 
+
+---
+#### Pregled zgodovine uveljavitev
+
+<img src="./img/gitlog-meme.jpeg" alt="logo" title="Logo" width="160"/> 
+
+---
+#### Pregled zgodovine uveljavitev
+
+```
+git log
+```
+```bash
+commit e44d7ef17a34fa9fa2d92ace8dd1296c06353d90 (HEAD -> main, origin/main, master)
+Author: Gašper Spagnolo <gasper.spagnolo@outlook.com>
+Date:   Tue Dec 12 22:02:03 2023 +0100
+
+    Zelo deskriptivno sporocilo!
+```
+```
+git log --oneline
+
+```
+```
+e44d7ef (HEAD -> main, origin/main, master) Zelo deskriptivno sporocilo!
+```
+
+
+---
+#### .Gitignore
+
+Pomaga nam ignorirati datoteke, ki jih ne zelimo dodati v repozitorij.
+Kot so npr. datoteke z gesli, datoteke z nastavitvami, datoteke z logi, baze itd.
+
+```bash
+λ echo "mojabaza.sqlite" >> .gitignore
+λ ls
+mojabaza.sqlite prva_datoteka.txt
+```
+
+```bash
+λ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+---
+#### .Gitignore
+
+<img src="./img/meme-gitignore-node-modules.png" alt="logo" title="Logo" width="600"/> 
 
 ---
 ### Hvala za pozornost <!-- .element: style="text-align: left; font-size: 50px;" -->
