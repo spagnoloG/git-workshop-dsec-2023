@@ -698,6 +698,38 @@ Ter uveljavimo spremembe:
 λ git commit -m "Fix merge conflict"
 ```
 
+
+---
+### Pull request
+
+<img src="./img/pull-request.png" alt="logo" title="Logo" width="330"/>
+
+---
+### Pull request
+
+Recimo da zelimo zdruziti vejo `moja-veja` v `main`.
+Vendar je `main` veja zascitena in moramo narediti pull request.
+Sepravi potrebujemo odobritev.
+
+```bash
+λ git checkout -b moja-veja 
+λ git commit -am "Dodal sem novo funkcionalnost"
+λ git push origin new-branch
+```
+
+```
+λ gh pr create --base main --head moja-veja \
+    --title "HUDA FUNKCIONALNOST" \
+    --body "Ta funkcionalnost nas bo obogatila za 1000€"
+```
+
+
+---
+### Pull request
+
+<img src="./img/terminal.jpg" alt="logo" title="Logo" width="400"/>
+
+
 ---
 ### Git Reset 
 
@@ -725,6 +757,11 @@ Date:   Wed Dec 13 00:08:53 2023 +0100
     Add example.txt with initial content
 
 ```
+
+---
+### Git Reset 
+
+<img src="./img/git-reset.jpeg" alt="logo" title="Logo" width="500"/>
 
 ---
 ### Git Reset 
@@ -996,6 +1033,12 @@ fi
 - Avtomatizacija dela po prejemu sprememb (npr. buildanje, deployanje,..)
 - Zascita glavne veje pred neposrednim commitom
 
+
+---
+### Hooks
+
+<img src="./img/hooks-meme.jpeg" alt="logo" title="Logo" width="500"/>
+
 ---
 ### Git config
 
@@ -1011,6 +1054,11 @@ Pomaga nam izboljsati uporabnisko izkusnjo z Gitom.
 `--global` populira `~/.gitconfig`. 
 
 ---
+### Aliases
+
+<img src="./img/aliases.jpg" alt="logo" title="Logo" width="1000"/>
+
+---
 ### Git aliases
 
 ```
@@ -1022,6 +1070,11 @@ Pomaga nam izboljsati uporabnisko izkusnjo z Gitom.
 λ git config --global alias.br "branch"
 λ git config --global alias.undo "reset HEAD~1 --mixed"
 ```
+
+---
+### Wrap it up
+
+<img src="./img/finish.jpg" alt="logo" title="Logo" width="400"/>
 
 
 ---
