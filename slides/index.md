@@ -150,7 +150,7 @@ Basically recept kako priti iz datoteke A v datoteko B.
 ### Kako začeti z Gitom?
 
 ```bash
-git init
+λ git init
 ```
 
 ```bash
@@ -246,7 +246,7 @@ kot je commit, push, in podobno. Privzeto so te skripte vzorci in niso aktivne.
 Recimo, da sedaj zelimo nas lokalni git povezati z nekim git streznikom, da bomo imeli backup nasega lokalnega repozitorija.
 
 ```bash
-git remote add origin https://gitea.spanskiduh.dev/spanskiduh/test-repo.git
+λ git remote add origin https://gitea.spanskiduh.dev/spanskiduh/test-repo.git
 ```
 
 V datoteko `.git/config` se doda vrstica:
@@ -291,7 +291,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ### dodajanje nove datoteke
 
 ```bash
-git add prva_datoteka.txt
+λ git add prva_datoteka.txt
 ```
 
 ```bash
@@ -311,7 +311,7 @@ Changes to be committed:
 <img src="./img/git-commit-message-meme.png" alt="logo" title="Logo" width="400"/>
 
 ```bash
-git commit -m "Zelo deskriptivno sporocilo!"
+λ git commit -m "Zelo deskriptivno sporocilo!"
 ```
 
 ---
@@ -320,7 +320,7 @@ git commit -m "Zelo deskriptivno sporocilo!"
 <img src="./img/master-main.jpg" alt="logo" title="Logo" width="400"/> 
 
 ```bash
-git checkout -b main; git push -u origin main
+λ git checkout -b main; git push -u origin main
 ```
 
 ---
@@ -337,7 +337,7 @@ git checkout -b main; git push -u origin main
 #### Pregled zgodovine uveljavitev
 
 ```
-git log
+λ git log
 ```
 ```bash
 commit e44d7ef17a34fa9fa2d92ace8dd1296c06353d90 (HEAD -> main, origin/main, master)
@@ -347,7 +347,7 @@ Date:   Tue Dec 12 22:02:03 2023 +0100
     Zelo deskriptivno sporocilo!
 ```
 ```
-git log --oneline
+λ git log --oneline
 
 ```
 ```
@@ -410,12 +410,12 @@ Switched to a new branch 'feats1337'
 Spremenino datoteko `prva_datoteka.txt`:
 
 ```bash
-echo -n "\n 1337 feature" >> prva_datoteka.txt
+λ echo -n "\n 1337 feature" >> prva_datoteka.txt
 ```
 Dodamo spremembe v repozitorij:
 
 ```bash
-git add prva_datoteka.txt
+λ git add prva_datoteka.txt
 ```
 
 ---
@@ -553,10 +553,10 @@ e44d7 -- [634d79 --  8a79f' -- e60b7' -- b62623']
 ### Rebase
 
 ```
-git checkout feats1337
-git rebase main
-git checkout main
-git merge feats1337
+λ git checkout feats1337
+λ git rebase main
+λ git checkout main
+λ git merge feats1337
 ```
 
 ---
@@ -598,10 +598,10 @@ git merge feats1337
 ### Merge
 
 ```
-git checkout -b feats222
+λ git checkout -b feats222
 # Create some commits on feats222
-git checkout main
-git merge feats222
+λ git checkout main
+λ git merge feats222
 ```
 
 ---
@@ -621,10 +621,10 @@ git merge feats222
 Najprej ustvarimo `example.txt` datoteko z neko vsebino:
 
 ```bash 
-git checkout main
-echo "Initial content" > example.txt
-git add example.txt
-git commit -m "Add example.txt with initial content"
+λ git checkout main
+λ echo "Initial content" > example.txt
+λ git add example.txt
+λ git commit -m "Add example.txt with initial content"
 ```
 
 ---
@@ -633,10 +633,10 @@ git commit -m "Add example.txt with initial content"
 Ustvarimo novo vejo uin dodamo novo vrstico v datoteko:
 
 ```bash
-git checkout -b feature-branch
-echo "Content added in feature-branch" > example.txt
-git add example.txt
-git commit -m "Modify example.txt in feature-branch"
+λ git checkout -b feature-branch
+λ echo "Content added in feature-branch" > example.txt
+λ git add example.txt
+λ git commit -m "Modify example.txt in feature-branch"
 ```
 
 ---
@@ -645,10 +645,10 @@ git commit -m "Modify example.txt in feature-branch"
 Se vrnemo nazaj na `main` in dodamo novo vrstico v datoteko:
 
 ```bash
-git checkout main
-echo "Conflicting content in main branch" > example.txt
-git add example.txt
-git commit -m "Modify example.txt in main with conflicting content"
+λ git checkout main
+λ echo "Conflicting content in main branch" > example.txt
+λ git add example.txt
+λ git commit -m "Modify example.txt in main with conflicting content"
 ```
 
 ---
@@ -657,7 +657,7 @@ git commit -m "Modify example.txt in main with conflicting content"
 Združimo obe veji:
 
 ```bash
-git merge feature-branch
+λ git merge feature-branch
 ```
 O ne!
 
@@ -689,13 +689,13 @@ Content added in feature-branch
 Po popravku datoteke jo dodamo v repozitorij:
 
 ```
-git add example.txt
+λ git add example.txt
 ```
 
 Ter uveljavimo spremembe:
 
 ```
-git commit -m "Fix merge conflict"
+λ git commit -m "Fix merge conflict"
 ```
 
 ---
@@ -732,7 +732,7 @@ Date:   Wed Dec 13 00:08:53 2023 +0100
 Po izboru se lahko vrnemo nazaj na stanje pred zdruzevanjem vej.
 
 ```bash
-git reset --hard 9fdd5980c45b35dcbe7d0b84d9a82fa3e3babeb6
+λ git reset --hard 9fdd5980c45b35dcbe7d0b84d9a82fa3e3babeb6
 ```
 
 ```
@@ -754,7 +754,7 @@ da commmit ni specificiran, avtomatsko vzame HEAD.
 Recimo da nekaj dodamo v datoteko `example.txt`:
 
 ```bash
-git diff
+λ git diff
 
 diff --git a/example.txt b/example.txt
 index 8430408..894d3bf 100644
@@ -774,7 +774,7 @@ Tukaj pa je primer uporabe `git diff` med dvema razlicnima uveljavitvama.
 Uporabno ce zelimo na hitro videti spremembe in razlike med dvema commitoma.
 
 ```
-git diff e60b7db57 8a79fbcae
+λ git diff e60b7db57 8a79fbcae
 
 diff --git a/prva_datoteka.txt b/prva_datoteka.txt
 index 7305551..9349f3f 100644
@@ -802,7 +802,7 @@ index 7305551..9349f3f 100644
 Recimo da nas zanima, kdo vse in kdaj je spreminjal datoteko `prva_datoteka.txt`:
 
 ```bash
-git blame -l prva_datoteka.txt
+λ git blame -l prva_datoteka.txt
 ```
 
 ```
@@ -818,17 +818,17 @@ b4fac5 (Gašper Spagnolo 2023-12-12 23:35:06 +0100 3)  1337 feature\n 1338 featu
 Recimo da nas zanima samo od specificnega commmita naprej:
 
 ```bash
-git -l blame <commit-hash>..HEAD prva_datoteka.txt
+λ git -l blame <commit-hash>..HEAD prva_datoteka.txt
 ```
 
 Recimo da nas zanimajo spremembe samo specificnega avtorja:
 ```bash
-git blame -l --author="Author Name" prva_datoteka.txt
+λ git blame -l --author="Author Name" prva_datoteka.txt
 ```
 
 Obcijano se zelimo znebiti tudi praznih vrstic:
 ```bash
-git blame -l -w prva_datoteka.txt
+λ git blame -l -w prva_datoteka.txt
 ```
 
 ---
@@ -842,20 +842,20 @@ Cherry pick in a nutshell:
 ### Cherry pick primer
 
 ```bash
-git checkout main
-git checkout -b cpp
+λ git checkout main
+λ git checkout -b cpp
 ```
 
 ```bash
-echo "This is the first change." > file.txt
-git add file.txt
-git commit -m "First change in cpp branch"
+λ echo "This is the first change." > file.txt
+λ git add file.txt
+λ git commit -m "First change in cpp branch"
 ```
 
 ```bash
-echo "This is the second change." >> file.txt
-git add file.txt
-git commit -m "Second change in cpp branch"
+λ echo "This is the second change." >> file.txt
+λ git add file.txt
+λ git commit -m "Second change in cpp branch"
 ```
 
 ---
@@ -864,7 +864,7 @@ git commit -m "Second change in cpp branch"
 Izberemo commit, ki ga zelimo cherry pickati:
 
 ```bash
-git log
+λ git log
 ```
 
 ```bash
@@ -888,7 +888,7 @@ Recimo da zelimo prvo spremembo: `b18a..`.
 
 
 ```bash
-git checkout main
+λ git checkout main
 ```
 
 ```bash
@@ -900,7 +900,127 @@ git checkout main
 ```
 
 ```bash
-git merge cpp
+λ git merge cpp
+```
+
+---
+### Git stash
+
+<img src="./img/git-stash.png" alt="logo" title="Logo" width="1000"/>
+
+
+---
+### Git stash
+
+```bash
+λ echo "To je datoteka na kateri zelim se delati pozneje" > datoteka.txt
+λ git add datoteka.txt
+λ git stash 
+# or named stash
+λ git stash save "stash name"
+```
+Potem pa nadaljujemo z nasim delom.
+
+---
+### Git stash
+
+Git stash privzeto shrani samo datoteke, ki smo jih dodali v repozitorij z `git add`.
+Ce zelimo shraniti tudi datoteke, ki jih nismo dodali v repozitorij, uporabimo:
+
+```bash
+λ git stash -u
+```
+
+Pregled stash-ov:
+```bash
+λ git stash list
+```
+
+---
+### Git stash
+
+Ko pa zelimo sedaj nadaljevati z delom na tej datoteki(ah), pa jo lahko pridobimo iz stash-a:
+
+```bash
+λ git stash pop
+```
+Ali ce imamo vec stash-ov:
+```bash
+λ git stash apply stash@{index}
+```
+
+---
+### Git stash
+
+Brsianje specificnega stash-a:
+```bash
+λ git stash drop stash@{index}
+```
+
+Brisanje vseh stash-ov:
+```bash
+λ git stash clear
+```
+
+---
+### Hooks
+
+<img src="./img/hooks.png" alt="logo" title="Logo" width="1000"/>
+
+
+---
+### Example Hook
+
+`vi .git/hooks/pre-commit`
+
+```bash
+#!/bin/sh
+# pre-commit
+
+if git diff --cached | grep -i 'TODO'
+then
+  echo "Your commit contains TODO. Please remove it before committing."
+  exit 1
+fi
+```
+
+`chmod +x .git/hooks/pre-commit`
+
+
+---
+### Uporaba hookov
+
+- Preverjanje kode pred commitom ( zagon testov, linerjev, formaterjev,..)
+- Preverjanje commit sporočil
+- Obvescanje kolaboratorjev ob commitu
+- Avtomatizacija dela po prejemu sprememb (npr. buildanje, deployanje,..)
+- Zascita glavne veje pred neposrednim commitom
+
+---
+### Git config
+
+Pomaga nam izboljsati uporabnisko izkusnjo z Gitom.
+
+```bash
+λ git config --global user.name "Your Name"
+λ git config --global user.email "your_email@example.com"
+λ git config --global init.defaultBranch main
+λ git config --global core.editor "code --wait" # set vscode as default editor
+```
+
+`--global` populira `~/.gitconfig`. 
+
+---
+### Git aliases
+
+```
+λ git config --global alias.a "add ."
+λ git config --global alias.cm "commit -m"
+λ git config --global alias.s "status"
+λ git config --global alias.lg "log --graph --oneline --decorate --all"
+λ git config --global alias.co "checkout"
+λ git config --global alias.br "branch"
+λ git config --global alias.undo "reset HEAD~1 --mixed"
 ```
 
 
@@ -932,3 +1052,10 @@ git merge cpp
 
 </div>
 </div>
+
+---
+# Join us
+
+`join@dragonsec.si`
+
+<img src="./img/DragonSec_logo.png" alt="logo" title="Logo" width="300"/> 
