@@ -213,22 +213,6 @@ Direktorij `hooks` vsebuje skripte, ki se lahko samodejno izvajajo ob določenih
 kot je commit, push, in podobno. Privzeto so te skripte vzorci in niso aktivne.
 
 ---
-### Kako dodamo oddaljeni repozitorij?
-
-Recimo, da sedaj želimo nas lokalni git povezati z nekim git strežnikom, da bomo imeli backup našega lokalnega repozitorija.
-
-```bash
-λ git remote add origin https://gitea.spanskiduh.dev/spanskiduh/test-repo.git
-```
-
-V datoteko `.git/config` se doda vrstica:
-```
-[remote "origin"]
-        url = https://gitea.spanskiduh.dev/spanskiduh/test-repo.git
-        fetch = +refs/heads/*:refs/remotes/origin/*
-```
-
----
 ### Dodajanje nove datoteke
 
 ```bash
@@ -287,9 +271,26 @@ Changes to be committed:
 ```
 
 ---
+### Kako dodamo oddaljeni repozitorij?
+
+Želja po povezavi z oddaljenim repozitorijem:
+
+```bash
+λ git remote add origin \
+    https://gitea.spanskiduh.dev/spanskiduh/test-repo.git
+```
+
+V datoteko `.git/config` se doda vrstica:
+```
+[remote "origin"]
+        url = https://gitea.spanskiduh.dev/spanskiduh/test-repo.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+```
+
+---
 ### Sinhronizacija lokalnega repozitorija z oddaljenim
 
-<img src="./img/master-main.jpg" alt="logo" title="Logo" width="400"/> 
+<img src="./img/master-main.jpg" alt="logo" title="Logo" width="500"/> 
 
 ```bash
 λ git checkout -b main; git push -u origin main
@@ -298,12 +299,12 @@ Changes to be committed:
 ---
 ### Sinhronizacija lokalnega repozitorija z oddaljenim
 
-<img src="./img/pushed-to-git.png" alt="logo" title="Logo" width="600"/> 
+<img src="./img/pushed-to-git.png" alt="logo" title="Logo" width="800"/> 
 
 ---
 #### Kloniranje oddaljenega repozitorija
 
-<img src="./img/ffmpeg.png" alt="logo" title="Logo" width="750"/>
+<img src="./img/ffmpeg.png" alt="logo" title="Logo" width="1000"/>
 
 ```bash
 λ git clone https://github.com/FFmpeg/FFmpeg.git
@@ -333,7 +334,7 @@ Basically `git pull = git fetch + git merge`
 ---
 #### Pregled zgodovine uveljavitev
 
-<img src="./img/gitlog-meme.jpeg" alt="logo" title="Logo" width="170"/> 
+<img src="./img/gitlog-meme.jpeg" alt="logo" title="Logo" width="220"/> 
 
 ---
 #### Pregled zgodovine uveljavitev
@@ -385,7 +386,7 @@ Kot so npr. datoteke z gesli, datoteke z nastavitvami, datoteke z logi, baze itd
 ---
 #### .Gitignore
 
-<img src="./img/meme-gitignore-node-modules.png" alt="logo" title="Logo" width="600"/> 
+<img src="./img/meme-gitignore-node-modules.png" alt="logo" title="Logo" width="700"/> 
 
 
 ---
@@ -393,12 +394,12 @@ Kot so npr. datoteke z gesli, datoteke z nastavitvami, datoteke z logi, baze itd
 
 Zakaj?
 
-<img src="./img/git-branches-merge.png" alt="logo" title="Logo" width="600"/>
+<img src="./img/git-branches-merge.png" alt="logo" title="Logo" width="800"/>
 
 ---
 ### Reality
 
-<img src="./img/branching-reallife.png" alt="logo" title="Logo" width="400"/>
+<img src="./img/branching-reallife.png" alt="logo" title="Logo" width="430"/>
 
 
 ---
@@ -535,7 +536,7 @@ feats1337:  634d79 --  8a79f -- e60b7 -- b62623
 ---
 ### Združevanje vej
 
-<img src="./img/merge-rebase.png" alt="logo" title="Logo" width="600"/> 
+<img src="./img/merge-rebase.png" alt="logo" title="Logo" width="1000"/> 
 
 ---
 ### Združevanje vej
@@ -610,18 +611,18 @@ e44d7 -- [634d79 --  8a79f' -- e60b7' -- b62623']
 ---
 ### Merge conflicts
 
-<img src="./img/merge-conflict.png" alt="logo" title="Logo" width="600"/>
+<img src="./img/merge-conflict.png" alt="logo" title="Logo" width="850"/>
 
 ---
 ### Merge conflicts
 
-<img src="./img/mc.webp" alt="logo" title="Logo" width="500"/>
+<img src="./img/mc.webp" alt="logo" title="Logo" width="550"/>
 
 
 ---
 ### Primer merge conflicta
 
-Najprej ustvarimo `example.txt` datoteko z neko vsebino:
+Najprej ustvarimo `example.txt` datoteko z vsebino:
 
 ```bash 
 λ git checkout main
@@ -651,7 +652,7 @@ Se vrnemo nazaj na `main` in dodamo novo vrstico v datoteko:
 λ git checkout main
 λ echo "Conflicting content in main branch" > example.txt
 λ git add example.txt
-λ git commit -m "Modify example.txt in main with conflicting content"
+λ git commit -m "Quickfix, push to production"
 ```
 
 ---
@@ -705,14 +706,12 @@ Ter uveljavimo spremembe:
 ---
 ### Pull request
 
-<img src="./img/pull-request.png" alt="logo" title="Logo" width="330"/>
+<img src="./img/pull-request.png" alt="logo" title="Logo" width="430"/>
 
 ---
 ### Pull request
 
-Recimo da želimo združiti vejo `moja-veja` v `main`.
-Vendar je `main` veja zaščitena in moramo narediti pull request.
-Se pravi potrebujemo odobritev.
+`main` veja zaščitena  => potrebujemo odobritev.
 
 ```bash
 λ git checkout -b moja-veja 
@@ -730,15 +729,17 @@ Se pravi potrebujemo odobritev.
 ---
 ### Pull request
 
-<img src="./img/terminal.jpg" alt="logo" title="Logo" width="400"/>
+<img src="./img/terminal.jpg" alt="logo" title="Logo" width="550"/>
 
 
 ---
 ### Git Reset 
 
-Recimo da se želimo vrniti na stanje pred združevanjem vej.
-Uporabimo naso prelepo komando `git log` ter lociramo commit,
-na katerega se želimo vrniti.
+<img src="./img/git-reset.jpeg" alt="logo" title="Logo" width="700"/>
+
+---
+### Git Reset 
+
 
 ```bash
 commit a1af9a2ce1e46f336e2a904149ded1078eedd43e
@@ -760,11 +761,11 @@ Date:   Wed Dec 13 00:08:53 2023 +0100
     Add example.txt with initial content
 
 ```
+Note:
+Recimo da se želimo vrniti na stanje pred združevanjem vej.
+Uporabimo naso prelepo komando `git log` ter lociramo commit,
+na katerega se želimo vrniti.
 
----
-### Git Reset 
-
-<img src="./img/git-reset.jpeg" alt="logo" title="Logo" width="500"/>
 
 ---
 ### Git Reset 
@@ -791,7 +792,7 @@ In sedaj HEAD kaže na commit, ki smo ga izbrali.
 Pokaže razliko med trenutnim stanjem in stanjem v izbranem commitu, v primeru
 da commmit ni specificiran, avtomatsko vzame HEAD.
 
-Recimo da nekaj dodamo v datoteko `example.txt`:
+Dodajmo nekaj v datoteko `example.txt`:
 
 ```bash
 λ git diff
@@ -810,8 +811,7 @@ index 8430408..894d3bf 100644
 ---
 ### Git diff
 
-Tukaj pa je primer uporabe `git diff` med dvema različnima uveljavitvima.
-Uporabno če zelimo na hitro videti spremembe in razlike med dvema commitoma.
+Primer uporabe `git diff` med dvema različnima uveljavitvima.
 
 ```
 λ git diff e60b7db57 8a79fbcae
@@ -855,21 +855,25 @@ b4fac5 (Gašper Spagnolo 2023-12-12 23:35:06 +0100 3)  1337 feature\n 1338 featu
 ---
 ### Git blame napredno
 
-Recimo da nas zanima samo od specifičnega commmita naprej:
 
 ```bash
 λ git -l blame <commit-hash>..HEAD prva_datoteka.txt
 ```
 
-Recimo da nas zanimajo spremembe samo specifičnega avtorja:
 ```bash
 λ git blame -l --author="Author Name" prva_datoteka.txt
 ```
 
-Običajno se želimo znebiti tudi praznih vrstic:
 ```bash
 λ git blame -l -w prva_datoteka.txt
 ```
+
+Note:
+Recimo da nas zanima samo od specifičnega commmita naprej:
+
+Recimo da nas zanimajo spremembe samo specifičnega avtorja:
+
+Običajno se želimo znebiti tudi praznih vrstic:
 
 ---
 ### Cherry pick
@@ -953,7 +957,8 @@ Recimo da želimo prvo spremembo: `b18a..`.
 ### Git stash
 
 ```bash
-λ echo "To je datoteka na kateri zelim se delati pozneje" > datoteka.txt
+λ echo "To je datoteka na kateri zelim se delati pozneje" \
+    > datoteka.txt
 λ git add datoteka.txt
 λ git stash 
 # or named stash
@@ -964,7 +969,6 @@ Potem pa nadaljujemo z našim delom.
 ---
 ### Git stash
 
-Git stash privzeto shrani samo datoteke, ki smo jih dodali v repozitorij z `git add`.
 Ce zelimo shraniti tudi datoteke, ki jih nismo dodali v repozitorij, uporabimo:
 
 ```bash
@@ -1008,7 +1012,7 @@ Brisanje vseh stash-ov:
 ---
 ### Hooks
 
-<img src="./img/hooks.png" alt="logo" title="Logo" width="1000"/>
+<img src="./img/hooks.png" alt="logo" title="Logo" width="1900"/>
 
 
 ---
@@ -1022,7 +1026,7 @@ Brisanje vseh stash-ov:
 
 if git diff --cached | grep -i 'TODO'
 then
-  echo "Your commit contains TODO. Please remove it before committing."
+  echo "Please remove TODOs before committing."
   exit 1
 fi
 ```
@@ -1043,7 +1047,7 @@ fi
 ---
 ### Hooks
 
-<img src="./img/hooks-meme.jpeg" alt="logo" title="Logo" width="500"/>
+<img src="./img/hooks-meme.jpeg" alt="logo" title="Logo" width="600"/>
 
 ---
 ### Git config
@@ -1100,10 +1104,6 @@ Checking 00ec0a7b0e8facc65b1935d8727920a6e265567c
 ---
 ### ZABAVNI PRIMER IZ PRAKSE
 
-Recimo da smo ponesreči izbrisali commit, pa ga želimo obnoviti.
-Ce imamo srečo, se tale commit se vedno nahaja v nasem lokalnem repozitoriju, 
-vendar noben branch ne kaže nanj.
-
 
 ```bash
 git fsck --full --no-reflogs --unreachable \ 
@@ -1111,6 +1111,11 @@ git fsck --full --no-reflogs --unreachable \
     git log -n 1 --pretty=oneline | grep "<commit-message>"
 ```
 
+Note:
+
+Recimo da smo ponesreči izbrisali commit, pa ga želimo obnoviti.
+Ce imamo srečo, se tale commit se vedno nahaja v nasem lokalnem repozitoriju, 
+vendar noben branch ne kaže nanj.
 
 ---
 ###  GIT GC
@@ -1136,7 +1141,7 @@ git config --global gc.auto 256
 ---
 ### Wrap it up
 
-<img src="./img/finish.jpg" alt="logo" title="Logo" width="400"/>
+<img src="./img/finish.jpg" alt="logo" title="Logo" width="470"/>
 
 
 ---
