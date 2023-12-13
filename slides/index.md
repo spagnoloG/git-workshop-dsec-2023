@@ -179,64 +179,36 @@ drwxr-xr-x spagnologasper users 4.0 KB ...  objects
 drwxr-xr-x spagnologasper users 4.0 KB ...  refs
 ```
 
----
-### Config 
+Note:
+config
+To je datoteka konfiguracije za vaš Git repozitorij. 
+V njej so shranjene lokalne nastavitve za vaš repozitorij, 
+kot so informacije o uporabniku (ime in e-pošta), oddaljeni repozitoriji (remote repositories), 
+veje (branches), in druge nastavitve, specifične za vaš projekt.
+V to datoteko tudi pisejo git ukazi, ki jih izvajamo.
 
- To je datoteka konfiguracije za vaš Git repozitorij. 
- V njej so shranjene lokalne nastavitve za vaš repozitorij, 
- kot so informacije o uporabniku (ime in e-pošta), oddaljeni repozitoriji (remote repositories), 
- veje (branches), in druge nastavitve, specifične za vaš projekt.
- V to datoteko tudi pisejo git ukazi, ki jih izvajamo.
-
- ```
-[core]
-	repositoryformatversion = 0
-	filemode = true
-	bare = false
-	logallrefupdates = true
- ```
-
-
----
-### Description
-
-Vsebuje opis samega repozitorija.
-
-```
-λ cat description
-Unnamed repository; 
-edit this file 'description' to name the repository.
-```
-
----
-### HEAD
+HEAD file
 Datoteka HEAD vsebuje referenco na trenutno izbrano vejo. Pogosto kaže na datoteko znotraj refs/heads map
 
-```
-λ cat HEAD
-ref: refs/heads/master
-```
+Description file
+Vsebuje opis samega repozitorija.
 
----
-### OBJECTS
+Objects dir
 Direktorij objects je ključna komponenta Gitovega shranjevanja. 
 Vsebuje vse podatkovne objekte (commits, drevesa, binarne datoteke), 
 ki predstavljajo vsebino vašega repozitorija. Ti objekti so shranjeni v stisnjeni in binarni obliki
 
----
-### REFS
+Refs
 V tem direktoriju so shranjene reference na veje (branches), oznake (tags) 
 in oddaljene repozitorije (remotes). Vsaka od teh poddirektorijev vsebuje datoteke, 
 ki kažejo na določene commite.
 
----
-### LOGS
+Logs
 Direktorij logs vsebuje dnevniške datoteke, 
 ki zapisujejo spremembe v različnih referencah, kot so veje. 
-To omogoča sledenje zgodovini sprememb.
 
----
-### HOOKS
+Hooks
+To omogoča sledenje zgodovini sprememb.
 Direktorij `hooks` vsebuje skripte, ki se lahko samodejno izvajajo ob določenih dogodkih v Git ciklu, 
 kot je commit, push, in podobno. Privzeto so te skripte vzorci in niso aktivne.
 
@@ -327,6 +299,41 @@ Changes to be committed:
 ### Sinhronizacija lokalnega repozitorija z oddaljenim
 
 <img src="./img/pushed-to-git.png" alt="logo" title="Logo" width="600"/> 
+
+---
+#### Kloniranje oddaljenega repozitorija
+
+<img src="./img/ffmpeg.png" alt="logo" title="Logo" width="750"/>
+
+```bash
+λ git clone https://github.com/FFmpeg/FFmpeg.git
+```
+
+---
+#### GIT PULL VS. GIT FETCH
+
+Recimo, da smo klonirali ta repozitorij kaksen mesec nazaj in zelimo 
+pridobiti najnovejse spremembe.
+
+
+```
+λ git fetch
+```
+Uporabimo ko zelimo samo pridobiti vse spremembe, ki so se zgodile na oddaljenem repozitoriju.
+Vendar se nase lokalne veje ne posodobijo.
+
+---
+#### GIT PULL VS. GIT FETCH
+
+```
+λ git pull 
+```
+
+Uporabimo ko zelimo pridobiti vse spremembe, ki so se zgodile na oddaljenem repozitoriju.
+Nase lokalne veje se posodobijo.
+
+Basically `git pull = git fetch + git merge`
+
 
 ---
 #### Pregled zgodovine uveljavitev
