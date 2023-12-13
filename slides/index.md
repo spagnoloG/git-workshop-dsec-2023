@@ -1007,6 +1007,9 @@ Brisanje vseh stash-ov:
 ```
 
 ---
+# ADVANCED GIT
+
+---
 ### Hooks
 
 <img src="./img/hooks.png" alt="logo" title="Logo" width="1000"/>
@@ -1076,6 +1079,62 @@ Pomaga nam izboljsati uporabnisko izkusnjo z Gitom.
 λ git config --global alias.co "checkout"
 λ git config --global alias.br "branch"
 λ git config --global alias.undo "reset HEAD~1 --mixed"
+```
+
+---
+### GIT FSCK
+
+Preveri integriteto repozitorija.
+Ali vse imajo vse datoteke pravilni checksum, ali je prislo do kaksne napake pri commitu, itd.
+
+```bash
+λ git fsck -v
+Checking object directory
+Checking blob 00ec0a7b0e8facc65b1935d8727920a6e265567c
+Checking commit 05985f140657c479622df038c40ddf7f08ea84da
+Checking tree 0d4eeab809bbf3fe1581e2149e6b314c2ac9ddfa
+Checking HEAD link
+Checking reflog 0000000000000000000000000000000000000000->e44d7ef17a34fa9fa2d92ace8dd1296c06353d90
+Checking cache tree
+Checking connectivity (128 objects)
+Checking 00ec0a7b0e8facc65b1935d8727920a6e265567c
+....
+```
+
+---
+### ZABAVNI PRIMER IZ PRAKSE
+
+Recimo da smo ponsereci izbrisali commit, pa ga zelimo obnoviti.
+Ce imamo sreco, se tale commit se vedno nahaja v nasem lokalnem repozitoriju, 
+vendar noben branch ne kaze nanj.
+
+
+```bash
+git fsck --full --no-reflogs --unreachable \ 
+    --lost-found | grep commit | cut -d " " -f 3 | xargs -n 1 \ 
+    git log -n 1 --pretty=oneline | grep "<commit-message>"
+```
+
+
+---
+###  GIT GC
+
+Git garbage collector.
+Pocisti ravno tisto kar smo na prejsnem resevali ;).
+
+```bash
+λ git gc
+Enumerating objects: 50, done.
+Counting objects: 100% (50/50), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (33/33), done.
+Writing objects: 100% (50/50), done.
+Total 50 (delta 10), reused 0 (delta 0), pack-reused 0
+```
+
+Pocisti vse nepotrebne objekte, ko se jih nabere 256.
+```
+git config --global gc.auto 256
 ```
 
 ---
