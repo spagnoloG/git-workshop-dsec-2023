@@ -160,7 +160,7 @@ drwxr-xr-x spagnologasper users 4.0 KB ... 2023 ..
 drwxr-xr-x spagnologasper users 4.0 KB ... 2023 .git
 ```
 
-Note: Zacnemo z git init, tako ustvarimo nas lokalni repozitorij.
+Note: Začnemo z git init, tako ustvarimo naš lokalni repozitorij.
 
 ---
 ### Kaj se ustvari ob git init?
@@ -215,7 +215,7 @@ kot je commit, push, in podobno. Privzeto so te skripte vzorci in niso aktivne.
 ---
 ### Kako dodamo oddaljeni repozitorij?
 
-Recimo, da sedaj zelimo nas lokalni git povezati z nekim git streznikom, da bomo imeli backup nasega lokalnega repozitorija.
+Recimo, da sedaj želimo nas lokalni git povezati z nekim git strežnikom, da bomo imeli backup našega lokalnega repozitorija.
 
 ```bash
 λ git remote add origin https://gitea.spanskiduh.dev/spanskiduh/test-repo.git
@@ -310,27 +310,22 @@ Changes to be committed:
 ```
 
 ---
-#### GIT PULL VS. GIT FETCH
+### GIT PULL VS. GIT FETCH
 
-Recimo, da smo klonirali ta repozitorij kaksen mesec nazaj in zelimo 
-pridobiti najnovejse spremembe.
+Recimo, da smo klonirali ta repozitorij kakšen mesec nazaj in želimo 
+pridobiti najnovejše spremembe.
 
 
 ```
 λ git fetch
 ```
-Uporabimo ko zelimo samo pridobiti vse spremembe, ki so se zgodile na oddaljenem repozitoriju.
-Vendar se nase lokalne veje ne posodobijo.
 
 ---
-#### GIT PULL VS. GIT FETCH
+### GIT PULL VS. GIT FETCH
 
 ```
 λ git pull 
 ```
-
-Uporabimo ko zelimo pridobiti vse spremembe, ki so se zgodile na oddaljenem repozitoriju.
-Nase lokalne veje se posodobijo.
 
 Basically `git pull = git fetch + git merge`
 
@@ -338,7 +333,7 @@ Basically `git pull = git fetch + git merge`
 ---
 #### Pregled zgodovine uveljavitev
 
-<img src="./img/gitlog-meme.jpeg" alt="logo" title="Logo" width="160"/> 
+<img src="./img/gitlog-meme.jpeg" alt="logo" title="Logo" width="170"/> 
 
 ---
 #### Pregled zgodovine uveljavitev
@@ -365,8 +360,7 @@ e44d7ef (HEAD -> main, origin/main, master) Zelo deskriptivno sporocilo!
 ---
 #### .Gitignore
 
-Pomaga nam ignorirati datoteke, ki jih ne zelimo dodati v repozitorij.
-Kot so npr. datoteke z gesli, datoteke z nastavitvami, datoteke z logi, baze itd.
+Pomaga nam ignorirati datoteke, ki jih ne želimo dodati v repozitorij.
 
 ```bash
 λ echo "mojabaza.sqlite" >> .gitignore
@@ -385,6 +379,8 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
+Note:
+Kot so npr. datoteke z gesli, datoteke z nastavitvami, datoteke z logi, baze itd.
 
 ---
 #### .Gitignore
@@ -637,7 +633,7 @@ Najprej ustvarimo `example.txt` datoteko z neko vsebino:
 ---
 ### Primer merge conflicta
 
-Ustvarimo novo vejo uin dodamo novo vrstico v datoteko:
+Ustvarimo novo vejo in dodamo novo vrstico v datoteko:
 
 ```bash
 λ git checkout -b feature-branch
@@ -678,8 +674,8 @@ Automatic merge failed; fix conflicts and then commit the result.
 ---
 ### Primer merge conflicta
 
-V tem primeru uredimo datoteko tako da obdrzimo
-uveljavitev, ki jo zelimo obdrzati.
+V tem primeru datoteko uredimo tako da obdržimo
+uveljavitev, ki jo zelimo obdržati.
 
 ```bash
 λ cat example.txt
@@ -714,9 +710,9 @@ Ter uveljavimo spremembe:
 ---
 ### Pull request
 
-Recimo da zelimo zdruziti vejo `moja-veja` v `main`.
-Vendar je `main` veja zascitena in moramo narediti pull request.
-Sepravi potrebujemo odobritev.
+Recimo da želimo združiti vejo `moja-veja` v `main`.
+Vendar je `main` veja zaščitena in moramo narediti pull request.
+Se pravi potrebujemo odobritev.
 
 ```bash
 λ git checkout -b moja-veja 
@@ -740,9 +736,9 @@ Sepravi potrebujemo odobritev.
 ---
 ### Git Reset 
 
-Recimo da se zelimo vrniti na stanje pred zdruzevanjem vej.
+Recimo da se želimo vrniti na stanje pred združevanjem vej.
 Uporabimo naso prelepo komando `git log` ter lociramo commit,
-na katerega se zelimo vrniti.
+na katerega se želimo vrniti.
 
 ```bash
 commit a1af9a2ce1e46f336e2a904149ded1078eedd43e
@@ -773,7 +769,7 @@ Date:   Wed Dec 13 00:08:53 2023 +0100
 ---
 ### Git Reset 
 
-Po izboru se lahko vrnemo nazaj na stanje pred zdruzevanjem vej.
+Po izboru se lahko vrnemo nazaj na stanje pred združevanjem vej.
 
 ```bash
 λ git reset --hard 9fdd5980c45b35dcbe7d0b84d9a82fa3e3babeb6
@@ -787,7 +783,7 @@ Date:   Wed Dec 13 00:08:53 2023 +0100
     Add example.txt with initial content
 ```
 
-In sedaj HEAD kaze na commit, ki smo ga izbrali.
+In sedaj HEAD kaže na commit, ki smo ga izbrali.
 
 ---
 ### Git diff
@@ -814,8 +810,8 @@ index 8430408..894d3bf 100644
 ---
 ### Git diff
 
-Tukaj pa je primer uporabe `git diff` med dvema razlicnima uveljavitvama.
-Uporabno ce zelimo na hitro videti spremembe in razlike med dvema commitoma.
+Tukaj pa je primer uporabe `git diff` med dvema različnima uveljavitvima.
+Uporabno če zelimo na hitro videti spremembe in razlike med dvema commitoma.
 
 ```
 λ git diff e60b7db57 8a79fbcae
@@ -859,18 +855,18 @@ b4fac5 (Gašper Spagnolo 2023-12-12 23:35:06 +0100 3)  1337 feature\n 1338 featu
 ---
 ### Git blame napredno
 
-Recimo da nas zanima samo od specificnega commmita naprej:
+Recimo da nas zanima samo od specifičnega commmita naprej:
 
 ```bash
 λ git -l blame <commit-hash>..HEAD prva_datoteka.txt
 ```
 
-Recimo da nas zanimajo spremembe samo specificnega avtorja:
+Recimo da nas zanimajo spremembe samo specifičnega avtorja:
 ```bash
 λ git blame -l --author="Author Name" prva_datoteka.txt
 ```
 
-Obcijano se zelimo znebiti tudi praznih vrstic:
+Običajno se želimo znebiti tudi praznih vrstic:
 ```bash
 λ git blame -l -w prva_datoteka.txt
 ```
@@ -905,7 +901,7 @@ Cherry pick in a nutshell:
 ---
 ### Cherry pick primer
 
-Izberemo commit, ki ga zelimo cherry pickati:
+Izberemo commit, ki ga želimo cherry pickati:
 
 ```bash
 λ git log
@@ -925,7 +921,7 @@ Date:   Wed Dec 13 00:52:22 2023 +0100
     First change in cpp branch
 ```
 
-Recimo da zelimo prvo spremembo: `b18a..`.
+Recimo da želimo prvo spremembo: `b18a..`.
 
 ---
 ### Cherry pick primer
@@ -963,7 +959,7 @@ Recimo da zelimo prvo spremembo: `b18a..`.
 # or named stash
 λ git stash save "stash name"
 ```
-Potem pa nadaljujemo z nasim delom.
+Potem pa nadaljujemo z našim delom.
 
 ---
 ### Git stash
@@ -983,7 +979,7 @@ Pregled stash-ov:
 ---
 ### Git stash
 
-Ko pa zelimo sedaj nadaljevati z delom na tej datoteki(ah), pa jo lahko pridobimo iz stash-a:
+Ko pa želimo sedaj nadaljevati z delom na tej datoteki(ah), pa jo lahko pridobimo iz stash-a:
 
 ```bash
 λ git stash pop
@@ -996,7 +992,7 @@ Ali ce imamo vec stash-ov:
 ---
 ### Git stash
 
-Brsianje specificnega stash-a:
+Brsianje specifičnega stash-a:
 ```bash
 λ git stash drop stash@{index}
 ```
@@ -1037,7 +1033,7 @@ fi
 ---
 ### Uporaba hookov
 
-- Preverjanje kode pred commitom ( zagon testov, linerjev, formaterjev,..)
+- Preverjanje kode pred commitom ( zagon testov, linterjev, formaterjev,..)
 - Preverjanje commit sporočil
 - Obvescanje kolaboratorjev ob commitu
 - Avtomatizacija dela po prejemu sprememb (npr. buildanje, deployanje,..)
@@ -1052,7 +1048,7 @@ fi
 ---
 ### Git config
 
-Pomaga nam izboljsati uporabnisko izkusnjo z Gitom.
+Pomaga nam izboljšati uporabniško izkušnjo z Gitom.
 
 ```bash
 λ git config --global user.name "Your Name"
@@ -1085,7 +1081,7 @@ Pomaga nam izboljsati uporabnisko izkusnjo z Gitom.
 ### GIT FSCK
 
 Preveri integriteto repozitorija.
-Ali vse imajo vse datoteke pravilni checksum, ali je prislo do kaksne napake pri commitu, itd.
+Ali vse imajo vse datoteke pravilni checksum, ali je prislo do kakšne napake pri commitu, itd.
 
 ```bash
 λ git fsck -v
@@ -1104,9 +1100,9 @@ Checking 00ec0a7b0e8facc65b1935d8727920a6e265567c
 ---
 ### ZABAVNI PRIMER IZ PRAKSE
 
-Recimo da smo ponsereci izbrisali commit, pa ga zelimo obnoviti.
-Ce imamo sreco, se tale commit se vedno nahaja v nasem lokalnem repozitoriju, 
-vendar noben branch ne kaze nanj.
+Recimo da smo ponesreči izbrisali commit, pa ga želimo obnoviti.
+Ce imamo srečo, se tale commit se vedno nahaja v nasem lokalnem repozitoriju, 
+vendar noben branch ne kaže nanj.
 
 
 ```bash
@@ -1120,7 +1116,7 @@ git fsck --full --no-reflogs --unreachable \
 ###  GIT GC
 
 Git garbage collector.
-Pocisti ravno tisto kar smo na prejsnem resevali ;).
+Počisti ravno tisto, kar smo na prejsnem slide-u reševali ;).
 
 ```bash
 λ git gc
@@ -1132,7 +1128,7 @@ Writing objects: 100% (50/50), done.
 Total 50 (delta 10), reused 0 (delta 0), pack-reused 0
 ```
 
-Pocisti vse nepotrebne objekte, ko se jih nabere 256.
+Počisti vse nepotrebne objekte, ko se jih nabere 256.
 ```
 git config --global gc.auto 256
 ```
