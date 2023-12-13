@@ -714,7 +714,7 @@ Sepravi potrebujemo odobritev.
 ```bash
 λ git checkout -b moja-veja 
 λ git commit -am "Dodal sem novo funkcionalnost"
-λ git push origin new-branch
+λ git push origin moja-veja 
 ```
 
 ```
