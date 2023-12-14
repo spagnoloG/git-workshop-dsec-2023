@@ -414,7 +414,7 @@ Switched to a new branch 'feats1337'
 Spremenino datoteko `prva_datoteka.txt`:
 
 ```bash
-λ echo -n "\n 1337 feature" >> prva_datoteka.txt
+λ printf "\n1337 feature" >> prva_datoteka.txt
 ```
 Dodamo spremembe v repozitorij:
 
@@ -485,7 +485,6 @@ Remote:
 
       Zelo deskriptivno sporocilo!
 ```
-
 
 ---
 ### Globje
